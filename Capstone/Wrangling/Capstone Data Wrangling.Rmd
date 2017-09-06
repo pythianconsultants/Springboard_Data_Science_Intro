@@ -21,7 +21,7 @@ print(nrow(d3)) # 382 students
 
 I found a kernel in a Kaggle submission using this dataset that took a similar approach, though the coder used more attributes and therefore found fewer students in the intersecting group (https://www.kaggle.com/calcifer/alcohol-consumption-and-average-grades). This coder also decided (after finding a high correlation between math and Portuguese grades) to average the math and Portuguese grades and collapse the course distinction in the merged dataset.
 
-I didn't like the idea of averaging the math and Portuguese grades. I certainly know many people who received high grades in one subject and low grades in another! In the end, I decided that since my goal is to accurately predict final grades, I would consider which course (math or Portuguese) to be a distinct and important attribute in and of itself. I found the intersection between the math and Portuguese datasets in case I need it later, but I will mostly work with a combined dataset, d_both, that includes all the observations and also a new attribute for course.
+I didn't like the idea of averaging the math and Portuguese grades. I certainly know many people who received high grades in one subject and low grades in another! In the end, I decided that since my goal is to accurately predict final grades, I would consider each course (math or Portuguese) to be a distinct and important attribute in and of itself. I found the intersection between the math and Portuguese datasets in case I need it later, but I will mostly work with a combined dataset, d_both, that includes all the observations and also a new attribute for course.
 
 Here is my code:
 
