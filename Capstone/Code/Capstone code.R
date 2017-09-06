@@ -209,7 +209,7 @@ t.test(G3 ~ paid, data = d_port) # p-value = ~12.3%, not significant.
 
 # Correlations between final grade and the attributes NOT associated with course
 
-# SCHOOL: student's school # REVISE TO STUDENT T TEST
+# SCHOOL: student's school 
 ggplot(d_total, aes(x=school, y=G3, col = course)) +
   geom_point(position = "jitter", alpha = 0.6) +
   xlab("School") + ylab("Final Grade")
@@ -248,6 +248,9 @@ ggplot(d_total, aes(x=sex, y=G3, color=sex)) +
   facet_grid(. ~ course) 
 # It appears that female students do better in Portuguese and male students do better in math.
 # Maybe the impact of sex on math grades "cancels out" the impact of sex on Portuguese grades in the total dataset?
+
+summary(lm(G3~sex, data = d_total))
+summary(lm(G3~sex*course, data = d_total))
 
 # Compare percent of abs_fail students who are female to abs_fail students who are male.
 nrow(abs_fail[abs_fail$sex == "F", ]) / nrow(abs_fail) # ~55.6%
@@ -521,5 +524,10 @@ summary(aov(G3 ~ absences, data = d_total)) # p-value = 14%, not significant
 nrow(d_total[d_total$absences == 0 & d_total$G3 < 2, ]) # 54
 # All of the students who absolutely failed had 0 absences. Surprising!
 # And the (few) students with very high numbers of absences got near-average grades.
+
+# Attempt a multiple linear regression.
+
+my.model <- lm(G3~.-G1 -G2, data = d_total)
+summary(my.model)
 
 
